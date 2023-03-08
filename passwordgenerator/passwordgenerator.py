@@ -46,26 +46,34 @@ def login_(password):
 def complex():
 #Generates and displays a random password consisting of letters, numbers and symbols.
 #Asks the user how many letters, numbers and symbols they would like in their password.
+#The password must be between 8-16 characters. 
 #The characters from each respective category are truly randomized and not grouped together.
 #We will refer to the result of this function as a complex password.
 
+    print("Remember: Complex passwords are said to be between 8-16 characters long with upper and lowercase as well as numbers and symbols. \n")
+    
     letter_count = int(input("How many letters would you like in your password:\n"))
     number_count = int(input("How many numbers would you like in your password:\n"))
     symbol_count = int(input("How many symbols would you like in your password:\n"))
-    
-    for letter in range(letter_count):
-        password_list.append(random.choice(letters))
-    for number in range(number_count):
-        password_list.append(random.choice(numbers))
-    for symbol in range(symbol_count):
-        password_list.append(random.choice(symbols))
+    total_count = letter_count + number_count + symbol_count 
 
-    random.shuffle(password_list)
-    password = "".join(password_list)
+    if (total_count >= 8 and total_count <= 16):
+        for letter in range(letter_count):
+            password_list.append(random.choice(letters))
+        for number in range(number_count):
+            password_list.append(random.choice(numbers))
+        for symbol in range(symbol_count):
+            password_list.append(random.choice(symbols))
 
-    print(password)
-    login_(password)
+        random.shuffle(password_list)
+        password = "".join(password_list)
 
+        print(password)
+        login_(password)
+        
+    else:
+        print("Error: Password must be between 8-16 characters! \nTry again!")
+        complex()
     
 def simple():
 #Generates and displays a random password consisting of letters, numbers and symbols.
